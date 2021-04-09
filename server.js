@@ -25,6 +25,7 @@ app.get('/login', (req,res) =>{
         }
     }
     if(flag==0){
+        entries.push(response);
         res.sendFile(__dirname+'/success.html')
     }
     flag=0;
