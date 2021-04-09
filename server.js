@@ -32,12 +32,9 @@ app.get('/login', (req,res) =>{
     console.log(req.query)
 })
 //POST-method
-app.post('/user',(req,res)=>{
-    console.log(req)
-})
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname +'/test.html')
+    res.sendFile(__dirname +'/index.html')
 })
 
 app.listen(8086)
