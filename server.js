@@ -22,6 +22,7 @@ app.get('/login', (req,res) =>{
         if(entries[data].name == response.name && entries[data].email == response.email && entries[data].mobile_number==response.mobile_number && entries[data].dob==response.dob && entries[data].address == response.address){
             res.sendFile(__dirname+'/session.html');
             flag = 1;
+            console.log('credentials were already filled')
         }
     }
     if(flag==0){
