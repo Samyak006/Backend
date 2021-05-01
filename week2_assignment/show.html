@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showData(){
+            var xhttp = new XMLHttpRequest();
+            var url = "http://localhost:8085/ShowData"
+            xhttp.open("GET", url, true);
+            xhttp.send()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.responseText);
+                    console.log(response);
+                    fillData(response);
+                }
+            }
+        }
+        function fillData(response){
+            console.log(response)
+            let dataFiller = document.getElementById("log")
+            var dataString = "<table style='width:80%;margin:5%;border:1px solid black;'><tr><th>name</th><th>division</th><th>attendance</th><th>percentage</th><th>classroom</th><th>roll no</th><th>Email ID</th><th>mobile no</th></tr>";
+            for(a of response){
+            dataString += "<tr> <td>" + a.name + "</td> <td>" + a.division + "</td> <td>" + a.attendance + "</td> <td>" + a.percentage + "</td> <td>" + a.classroom + "</td> <td>" + a.roll + "</td> <td>" + a.email + "</td> <td>" + a.mob_no +"</td> </tr>";
+            }
+            dataString += "</table>";
+            console.log(dataString)
+            dataFiller.innerHTML = "";
+            dataFiller.innerHTML = dataString;
+        }
+    </script>
+</head>
+<body>
+    <div id="log"></div>
+    <button onclick="showData()">press here</button>
+    <button onclick="window.location.href='http://localhost:8085/'">Home</button>
+</body>
+</html>

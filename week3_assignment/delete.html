@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <script>
+        function deleteId(){
+            let roll = document.getElementById("rollno").value
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.responseText);
+                    window.alert(response.status)
+                }
+            }
+            var url = "http://localhost:8086/Delete"
+            xhttp.open("POST",url,true)
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify({"rollno":roll}));
+        }
+    </script>
+</head>
+<body>
+    <h1>Student Portal</h1><hr>
+    <div id="Main-content">
+        <label class="data">Roll number</label>
+        <input class="entries" type="text" id="rollno" placeholder="enter the roll you want to delete"><br><br>
+        <button class="btn btn-danger"type="submit" onclick="deleteId()">delete</button>
+    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8086/'">home</button>
+    </div>
+</body>
+</html>

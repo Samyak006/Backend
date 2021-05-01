@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <script>
+        function studentDetails() {
+            let name = document.getElementById("sName").value
+            let division = document.getElementById("sDivision").value
+            let attendance = document.getElementById("sAttendance").value
+            let percentage = document.getElementById("sPercentage").value
+            let classroom = document.getElementById("sClass").value
+            let roll = document.getElementById("sRoll").value
+            let email =document.getElementById("email").value
+            let mob_no =document.getElementById("mob_no").value
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.responseText);
+                    window.alert(response.status)
+                }
+            }
+            var url = "http://localhost:8086/Insert"
+            xhttp.open("POST", url, true);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(
+                {
+                    "name": name,
+                    "division": division,
+                    "attendance": attendance,
+                    "percentage": percentage,
+                    "classroom": classroom,
+                    "roll" : roll,
+                    "email": email,
+                    "mob_no":mob_no
+                }));
+        }
+    </script>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="/css/styles.css">
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>Student Portal</h1>
+    <hr>
+    <h2>Enter Your Details</h2>
+    <div id="Main-content">
+    <div class="field">
+        <label class="data">Name</label>
+        <input class = "entries"type="text" placeholder="enter student name" id="sName"><br>
+    </div>
+    <div class="field"> 
+        <label class="data">division</label>
+        <input class="entries"type="text" placeholder="enter student division" id="sDivision"><br>
+    </div>
+    <div class="field">
+        <label class="data">Attendance</label>
+        <input class="entries"type="text" placeholder="enter student attendance" id="sAttendance"><br>
+    </div>
+    <div class="field">
+        <label class="data">Percentage</label>
+        <input class="entries"type="text" placeholder="enter student percentage" id="sPercentage"><br>
+    </div>
+    <div class="field">
+        <label class="data">Class</label>
+        <input class="entries"type="text" placeholder="enter student class" id="sClass"><br>
+    </div>
+    <div class="field">
+        <label class="data">Roll</label>
+        <input class="entries" type="text" placeholder="enter student roll number" id="sRoll"><br>
+    </div>
+    <div class="field">
+        <label class="data">Email</label>
+        <input class="entries"type="email" placeholder="enter your email address" id ="email"><br>
+    </div>
+    <div class="field">
+        <label class="data">Mobile number</label>
+        <input class="entries"type="tel" placeholder="enter your mobile number" id ="mob_no"><br>
+    </div>
+    <button class="btn btn-success" onclick="studentDetails()">submit</button>
+    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8086/'">Home</button>
+    </div>
+</body>
+
+</html>

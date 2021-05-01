@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function deleteId(){
+            let roll = document.getElementById("rollno").value
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.responseText);
+                    window.alert(response.status)
+                }
+            }
+            var url = "http://localhost:8085/Delete"
+            xhttp.open("POST",url,true)
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify({"rollno":roll}));
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="rollno" placeholder="enter the roll you want to delete">
+    <button type="submit" onclick="deleteId()">delete</button>
+    <button onclick="window.location.href='http://localhost:8085/'">home</button>
+</body>
+</html>

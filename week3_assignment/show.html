@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script>
+
+
+        function generateRGB(length) {
+            let graphColors = [];
+            for (i = 0; i < length; i++) {
+                var randomR = Math.floor((Math.random() * 130) + 100);
+                var randomG = Math.floor((Math.random() * 130) + 100);
+                var randomB = Math.floor((Math.random() * 130) + 100);
+                var graphBackground = "rgb(" + randomR + ", " + randomG + ", " + randomB + ")";
+                graphColors.push(graphBackground);
+            }
+            return graphColors
+        }
+    var attendance,roll;
+        function getGraph(attendance,roll) {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: roll,
+                    datasets: [
+                        {
+                            label: 'attendance',
+                            data: attendance,
+                            borderColor: '#3e95cd',
+                            backgroundColor:'red',
+                            borderWidth: 1,
+                            fill: false
+                        },
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes:[{
+                            ticks:{
+                            beginAtZero: true
+                        }
+                    }]
+                    }
+                }
+            });
+        }
+        function showData(){
+            var xhttp = new XMLHttpRequest();
+            var url = "http://localhost:8086/ShowData"
+            xhttp.open("GET", url, true);
+            xhttp.send()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.responseText);
+                    console.log(response);
+                    fillData(response);
+                    dataPreparator(response);
+                }
+            }
+        }
+        function fillData(response){
+            console.log(response)
+            let dataFiller = document.getElementById("log")
+            var dataString = "<br><table style='width:80%;margin:5%;border:1px solid white;'><tr><th>name</th><th>division</th><th>attendance</th><th>percentage</th><th>classroom</th><th>roll no</th><th>Email ID</th><th>mobile no</th></tr>";
+            for(a of response){
+            dataString += "<tr> <td>" + a.name + "</td> <td>" + a.division + "</td> <td>" + a.attendance + "</td> <td>" + a.percentage + "</td> <td>" + a.classroom + "</td> <td>" + a.roll + "</td> <td>" + a.email + "</td> <td>" + a.mob_no +"</td> </tr>";
+            }
+            dataString += "</table>";
+            console.log(dataString)
+            dataFiller.innerHTML = "";
+            dataFiller.innerHTML = dataString;
+        }
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+        }
+
+        function dataPreparator(data) {
+            A_attendance_10=[];
+            B_attendance_10=[];
+            C_attendance_10=[];
+            A_Roll_10=[];
+            B_Roll_10=[];
+            C_Roll_10=[];
+            A_attendance_11=[];
+            B_attendance_11=[];
+            C_attendance_11=[];
+            A_Roll_11=[];
+            B_Roll_11=[];
+            C_Roll_11=[];
+            A_attendance_12=[];
+            B_attendance_12=[];
+            C_attendance_12=[];
+            A_Roll_12=[];
+            B_Roll_12=[];
+            C_Roll_12=[];
+            for(data of data){
+            if(data.classroom=='10'){
+                if(data.division=="A"){
+                    A_attendance_10.push(data.attendance);
+                    A_Roll_10.push(data.roll)
+                }
+                if(data.division=="B"){
+                    B_attendance_10.push(data.attendance);
+                    B_Roll_10.push(data.roll)
+                }
+                if(data.division=="C"){
+                    C_attendance_10.push(data.attendance);
+                    C_Roll_10.push(data.roll)
+                }
+            }
+            if(data.classroom=='11'){
+                if(data.division=="A"){
+                    A_attendance_11.push(data.attendance);
+                    A_Roll_11.push(data.roll)
+                }
+                if(data.division=="B"){
+                    B_attendance_11.push(data.attendance);
+                    B_Roll_11.push(data.roll)
+                }
+                if(data.division=="C"){
+                    C_attendance_11.push(data.attendance);
+                    C_Roll_11.push(data.roll)
+                }
+            }
+            if(data.classroom=='12'){
+                if(data.division=="A"){
+                    A_attendance_10.push(data.attendance);
+                    A_Roll_12.push(data.roll)
+                }
+                if(data.division=="B"){
+                    B_attendance_10.push(data.attendance);
+                    B_Roll_12.push(data.roll)
+                }
+                if(data.division=="C"){
+                    C_attendance_10.push(data.attendance);
+                    C_Roll_12.push(data.roll)
+                }
+            }
+        }
+    }
+    </script>
+</head>
+<body onload="showData()">
+    <h1>Student Details</h1><hr>
+    <div class='dropdown'>
+        <button class='dropbtn'>Attendance report for class 10</button>
+        <div class='dropdown-content'>
+            <a href="#report" onclick='getGraph(A_attendance_10,A_Roll_10)'>A</a>
+            <a href="#report" onclick='getGraph(B_attendance_10,B_Roll_10)'>B</a>
+            <a href="#report" onclick='getGraph(C_attendance_10,C_Roll_10)'>C</a>
+        </div>
+    </div>
+    <div class='dropdown'>
+        <button class='dropbtn'>Attendance report for class 11</button>
+        <div class='dropdown-content'>
+            <a href="#report"  onclick='getGraph(A_attendance_11,A_Roll_11)'>A</a>
+            <a href="#report" onclick='getGraph(B_attendance_11,B_Roll_11)'>B</a>
+            <a href="#report" onclick='getGraph(C_attendance_11,C_Roll_11)'>C</a>
+        </div>
+    </div>
+    <div class='dropdown'>
+        <button class='dropbtn'>Attendance report for class 12</button>
+        <div class='dropdown-content'>
+            <a href="#report"  onclick='getGraph(A_attendance_12,A_Roll_12)'>A</a>
+            <a href="#report" onclick='getGraph(B_attendance_12,B_Roll_12)'>B</a>
+            <a href="#report" onclick='getGraph(C_attendance_12,C_Roll_12)'>C</a>
+        </div>
+    </div>
+    <div id="log"></div>
+    <div id = "report"class="graph"><canvas id="myChart"></canvas></div> 
+    <button class="btn btn-primary" id='home' onclick="window.location.href='http://localhost:8086/'">Home</button>
+</body>
+</html>
