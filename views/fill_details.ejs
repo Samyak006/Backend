@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <title>Fill Details</title>
+
+    <script type="text/javascript">
+    function sendToDb(){
+      let values_plasma = document.getElementsByName('status_plasma');
+          for(i in values_plasma){
+            if(values_plasma[i].checked){
+            let acceptance_plasma = values_plasma[i].value
+            var AcceptanceStatus_plasma = acceptance_plasma;
+            console.log(AcceptanceStatus_plasma)
+          }
+        }
+          let values_blood = document.getElementsByName('status_blood');
+          for(i in values_blood){
+            if(values_blood[i].checked){
+            let acceptance_blood = values_blood[i].value
+            var AcceptanceStatus_blood = acceptance_blood;
+            console.log(AcceptanceStatus_blood)
+          }
+        }
+      var username = document.getElementById("username").innerText;
+      let bloodAp = document.getElementById("bloodAp").value;
+      let bloodAm = document.getElementById("bloodAm").value;
+
+      let bloodBp = document.getElementById("bloodBp").value;
+      let bloodBm = document.getElementById("bloodBm").value;
+
+      let bloodABp = document.getElementById("bloodABp").value;
+      let bloodABm = document.getElementById("bloodABm").value;
+
+      let bloodOp = document.getElementById("bloodOp").value;
+      let bloodOm = document.getElementById("bloodOm").value;
+
+
+
+      let plasmaAp = document.getElementById("plasmaAp").value;
+      let plasmaAm = document.getElementById("plasmaAm").value;
+
+      let plasmaBp = document.getElementById("plasmaBp").value;
+      let plasmaBm = document.getElementById("plasmaBm").value;
+
+      let plasmaABp = document.getElementById("plasmaABp").value;
+      let plasmaABm = document.getElementById("plasmaABm").value;
+
+      let plasmaOp = document.getElementById("plasmaOp").value;
+      let plasmaOm = document.getElementById("plasmaOm").value;
+
+      let Oxygen = document.getElementById("Oxygen").value;
+
+      let remedesvir = document.getElementById("remedesvir").value;
+      let heparin = document.getElementById("heparin").value;
+      
+      var xhttp = new XMLHttpRequest
+      xhttp.onreadystatechange = function(){
+        if(this.readyState==4 && this.status==200){
+            let response = JSON.parse(this.responseText);
+            window.alert(response.status)
+        }
+      }
+      url = "http://localhost:3000/fill_details"
+      xhttp.open("POST",url,true)
+      xhttp.setRequestHeader("Content-Type","application/json;charset=UTF-8")
+      xhttp.send(JSON.stringify({
+        "username":username,
+        "bloodAp":bloodAp,
+        "bloodAm":bloodAm,
+        "bloodBp":bloodBp,
+        "bloodBm":bloodBm,
+        "bloodABp":bloodABp,
+        "bloodABm":bloodABm,
+        "bloodOp":bloodOp,
+        "bloodOm":bloodOm,
+        "plasmaAp":plasmaAp,
+        "plasmaAm":plasmaAm,
+        "plasmaBp":plasmaBp,
+        "plasmaBm":plasmaBm,
+        "plasmaABp":plasmaABp,
+        "plasmaABm":plasmaABm,
+        "plasmaOp":plasmaOp,
+        "plasmaOm":plasmaOm,
+        "Oxygen":Oxygen,
+        "remedesvir":remedesvir,
+        "heparin":heparin,
+        "AcceptanceStatus_plasma":AcceptanceStatus_plasma,
+        "AcceptanceStatus_blood":AcceptanceStatus_blood
+      }))
+    }
+    function showhideForm(tabs) {
+        if (tabs == "blood") {
+            document.getElementById("div1").style.display = 'block';
+            document.getElementById("div2").style.display = 'none';
+            document.getElementById("div3").style.display = 'none';
+            document.getElementById("div4").style.display = 'none';
+            
+        }
+        if (tabs == "plasma") {
+            document.getElementById("div1").style.display = 'none';
+            document.getElementById("div2").style.display = 'block';
+            document.getElementById("div3").style.display = 'none';
+            document.getElementById("div4").style.display = 'none';
+           
+        }
+        if (tabs == "oxygen") {
+            document.getElementById("div1").style.display = 'none';
+            document.getElementById("div2").style.display = 'none';
+            document.getElementById("div3").style.display = 'block';
+            document.getElementById("div4").style.display = 'none';
+            
+        }
+        if (tabs == "medicines") {
+            document.getElementById("div1").style.display = 'none';
+            document.getElementById("div2").style.display = 'none';
+            document.getElementById("div3").style.display = 'none';
+            document.getElementById("div4").style.display = 'block';
+           
+        }
+    }
+       </script>
+
+
+</head>
+<body background="img/background.png" style="background-repeat:no-repeat; background-size: 100% 100%;">
+    <div class="md:flex md:flex-rol min-h-10">
+        <!-- Nav -->
+        <div
+          class="md:flex justify-between w-full h-20 text-white bg-black md:flex-nowrap"
+        >
+
+          <div class="z-30 md:flex items-center h-full pl-3 space-x-3 bg-gradient-to-r from-blue-200 to-blue-300">
+
+            <img alt="logo" class=" w-50 h-20 border-1 border-green-500" src="img/logo.png" />
+          
+            <!--<p class="text-2xl text-black">CoSahayak</p> -->
+          </div>
+
+
+          <!-- Menu -->
+          <div
+          class="flex flex-col items-stretch w-screen text-xl text-center transform bg-gradient-to-r from-blue-300 to-blue-500 md:flex-row md:translate-y-0 md:space-x-5 md:items-center md:justify-end md:pr-3"
+        >
+          <a
+            href="http://localhost:3000"
+            class="h-10 leading-10 border-b-2 border-dotted md:border-none hover:underline"
+            >Home</a>
+
+            <!--<a
+            href="#"
+            class="h-10 leading-10 border-b-2 text-black border-dotted hover:bg-pink-300 md:border-none md:bg-pink-200 md:rounded-full md:w-24"
+            >Edit Profile</a
+          >-->
+
+          <a
+            href="http://localhost:3000/login"
+            class="h-10 leading-10 border-b-2 text-black border-dotted hover:bg-pink-300 md:border-none md:bg-pink-200 md:rounded-full md:w-24"
+            >Logout</a
+          >
+
+
+        </div>
+        </div>
+      </div>
+      <p id="username" style="display:none;"><%= username %></p>
+      <div class="bg-transparent text-pink-700 px-4 py-10 rounded relative my-8" role="alert">
+              <div class="container mx-auto px-4 md:px-8">  
+                <div class="py-8">
+                      <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                          <div class="inline-block min-w-screen shadow rounded-lg overflow-hidden">
+                              <table class="min-w-full leading-normal">
+                                  <thead>
+                                      <tr>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                              A positive
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider hidden lg:table-cell">
+                                              A negative
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider hidden lg:table-cell">
+                                              B positive
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider hidden lg:table-cell">
+                                              B negative
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider hidden lg:table-cell">
+                                              AB positive
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider hidden lg:table-cell">
+                                              AB negative
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider hidden lg:table-cell">
+                                              O positive
+                                          </th>
+                                          <th
+                                              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider hidden md:table-cell">
+                                              O negative
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                              <div class="md:flex items-center">
+                                                  <div class="ml-3">
+                                                      <p class="text-gray-900 whitespace-no-wrap">
+                                                          <b>Blood(in ml)</b>
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center"><%= bloodAp %></p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                <%= bloodAm %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= bloodBp %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= bloodBm %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= bloodABp %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= bloodABm %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= bloodOp %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden md:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= bloodOm %>
+                                              </p>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                              <div class="md:flex items-center">
+                                                  <div class="ml-3">
+                                                      <p class="text-gray-900 whitespace-no-wrap">
+                                                          <b>Plasma(in ml)</b>
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center"><%= plasmaAp %></p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                <%= plasmaAm %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= plasmaBp %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= plasmaBm %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= plasmaABp %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= plasmaABm %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= plasmaOp %>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden md:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                  <%= plasmaOm %>
+                                              </p>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <div class="flex items-center">
+                                                <div class="ml-3">
+                                                    <p class="text-gray-900 whitespace-no-wrap">
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">Cylinders</p>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                            </p>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                            </p>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                            </p>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                            </p>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                            </p>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">Remedesvir</p>
+                                        </td>
+                                        <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            <p class="text-gray-900 whitespace-no-wrap text-center">Heparin</p>
+                                        </td>
+                                      </tr>
+
+                                    </tbody>
+                                    <tbody>
+
+                                      <tr>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <div class="flex items-center">
+                                                  <div class="ml-3">
+                                                      <p class="text-gray-900 whitespace-no-wrap">
+                                                          <b>Oxygen</b>
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center"><%= Oxygen %></p>
+                                          </td>
+                                          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                <b>Medicines</b>
+                                              </p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center"><%= remedesvir %></p>
+                                          </td>
+                                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden lg:table-cell">
+                                              <p class="text-gray-900 whitespace-no-wrap text-center"><%= heparin %></p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </div>
+
+      <!-- Alert Component
+      <div class="bg-pink-200 border border-pink-400 text-pink-700 px-4 py-3 rounded relative my-5" role="alert">
+        <span class="inline-flex bg-pink-600 text-white rounded-full h-6 px-3 justify-center items-center font-bold text-">IMPORTANT !</span>
+          <span class="block sm:inline">Plasma should be from previously covid-affected patients ONLY !!</span>
+      </div> -->
+
+
+  <!--Radio buttons (animated)-->
+  <main class="max-w-screen-xl mx-auto p-8 flex flex-col items-center">
+    <div class="flex w-full relative">
+      <input type="radio" id="option0" name="tabs" value="blood" onchange="showhideForm(this.value);" checked class="appearance-none"/>
+      <label for="option0" class="cursor-pointer w-1/4 flex items-center justify-center truncate uppercase select-block font-semibold text-lg rounded-full py-2">Blood</label>
+
+      <input type="radio" id="option1" name="tabs" value="plasma" onchange="showhideForm(this.value);" class="appearance-none" />
+      <label for="option1" class="cursor-pointer w-1/4 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full py-2">Plasma</label>
+
+      <input type="radio" id="option2" name="tabs" value="oxygen" onchange="showhideForm(this.value);" class="appearance-none" />
+      <label for="option2" class="cursor-pointer w-1/4 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full py-2">Oxygen</label>
+
+      <input type="radio" id="option3" name="tabs" value="medicines" onchange="showhideForm(this.value);" class="appearance-none" />
+      <label for="option3" class="cursor-pointer w-1/4 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full py-2">Medicine</label>
+      <div class="w-1/4 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full p-0 h-full bg-white absolute transform transition-transform tabAnim"></div>
+    </div>
+  </main>
+
+  <div id="div1" >
+    <!--blood form-->
+    <div class="font-sans min-h-full antialiased bg-transparent pt-6 pb-5">
+        <div class="flex flex-col justify-center sm:w-96 sm:m-auto mx-5 mb-5 space-y-8">
+
+            <div class="flex flex-col bg-white p-2.5 rounded-lg shadow space-y-6">
+              <h1 class="font-bold text-xl text-center">Fill Your Details Here</h1>
+              <h1 class="font-bold text-xl text-center">Blood Details</h1>
+
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                    Blood Type
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">A positive</h1>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodAp">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodAp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                    Blood Type
+                  </label>
+                  <div class="relative">
+
+                    <h1 class="font-bold text-5xs text-center">A negative</h1>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodAm">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodAm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                    Blood Type
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">B positive</h1>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodBp">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodBp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Blood Type
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">B negative</h1>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodBm">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodBm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                    Blood Type
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">AB positive</h1>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodABp">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodABp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Blood Type
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">AB negative</h1>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodABm">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodABm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Blood Type
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">O positive</h1>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodOp">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodOp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                    Blood Type
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">O negative</h1>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="bloodOm">
+                  Quantity (in ml)
+                  </label>
+                  <input id="bloodOm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  type="text" placeholder="Qty in ml">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Blood Donations
+                  </label>
+                  <div class="relative">
+                    <h1 class="font-bold text-5xs text-center">Acceptance Status</h1>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Yes/No
+                  </label>
+                  <input type="radio" id="bstatusy" value="Yes" name="status_blood" /> Yes &nbsp;&nbsp;
+                  <input type="radio" id="bstatusn" value="No" name="status_blood"/> No
+                </div>
+              </div>
+
+
+
+                  <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+                    <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Clear form</button>
+                    <!--<button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Submitting First Time</button>-->
+                    <button onclick="sendToDb()" class='w-auto bg-pink-700 hover:bg-pink-900 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Update details</button>
+                  </div>
+
+              </div>
+
+        </div>
+
+</div>
+</div>
+
+
+<div id="div2" style="display:none">
+  <!--Plasma form-->
+  <div class="font-sans min-h-screen antialiased bg-transparent pt-6 pb-5">
+      <div class="flex flex-col justify-center sm:w-96 sm:m-auto mx-5 mb-5 space-y-8">
+
+          <div class="flex flex-col bg-white p-2.5 rounded-lg shadow space-y-6">
+            <h1 class="font-bold text-xl text-center">Fill Your Details Here</h1>
+            <h1 class="font-bold text-xl text-center">Plasma Details</h1>
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                  Blood Type
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">A positive</h1>
+                  </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2"for="plasmaAp">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaAp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Blood Type
+                </label>
+                <div class="relative">
+
+                  <h1 class="font-bold text-5xs text-center">A negative</h1>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="plasmaAm">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaAm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  type="text" placeholder="Qty in ml">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Blood Type
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">B positive</h1>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="plasmaBp">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaBp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Blood Type
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">B negative</h1>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="plasmaBm">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaBm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Blood Type
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">AB positive</h1>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="plasmaBp">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaABp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Blood Type
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">AB negative</h1>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="plasmaABm">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaABm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in ml">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Blood Type
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">O positive</h1>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="plasmaOp">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaOp" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  type="text" placeholder="Qty in ml">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Blood Type
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">O negative</h1>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="plasmaOm">
+                Quantity (in ml)
+                </label>
+                <input id="plasmaOm" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  type="text" placeholder="Qty in ml">
+              </div>
+
+            </div>
+
+            <div class="flex flex-wrap -mx-2 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Plasma Donations
+                </label>
+                <div class="relative">
+                  <h1 class="font-bold text-5xs text-center">Acceptance Status</h1>
+                  </div>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                Yes/No
+                </label>
+                <input type="radio" id="pstatusy" value="Yes" name="status_plasma"/> Yes &nbsp;&nbsp;
+                <input type="radio" id="pstatusn" value="No" name="status_plasma"/> No
+              </div>
+            </div>
+              <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+                <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Clear form</button>
+                <!--<button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Submitting First Time</button>-->
+                <button onclick="sendToDb()" class='w-auto bg-pink-700 hover:bg-pink-900 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Update details</button>
+                </div>
+            </div>
+
+      </div>
+
+</div>
+</div>
+
+  <div id="div3" style="display:none">
+    <!--Oxygen-->
+    <div class="font-sans min-h-screen antialiased bg-transparent pt-6 pb-5">
+        <div class="flex flex-col justify-center sm:w-96 sm:m-auto mx-5 mb-5 space-y-8">
+
+            <div class="flex flex-col bg-white p-2.5 rounded-lg shadow space-y-6">
+              <h1 class="font-bold text-xl text-center">Fill Your Details Here</h1>
+              <h1 class="font-bold text-xl text-center">Oxygen Cylinder Details</h1>
+
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/32 px-3 mb-6 md:mb-0">
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="Oxygen">
+                  Quantity (text of cyclinders available)
+                  </label>
+                  <input id="Oxygen" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  type="text" placeholder="Qty in texts">
+                </div>
+              </div>
+
+              <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+                <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Clear form</button>
+                    <!--<button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Submitting First Time</button>-->
+                    <button onclick="sendToDb()"class='w-auto bg-pink-700 hover:bg-pink-900 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Update details</button>
+              </div>
+
+        </div>
+    </div>
+    </div>
+  </div>
+
+  <div id="div4" style="display:none">
+    <!--Medicine-->
+    <div class="font-sans min-h-screen antialiased bg-transparent pt-6 pb-5">
+        <div class="flex flex-col justify-center sm:w-96 sm:m-auto mx-5 mb-5 space-y-8">
+
+            <div class="flex flex-col bg-white p-2.5 rounded-lg shadow space-y-6">
+              <h1 class="font-bold text-xl text-center">Fill Your Details Here</h1>
+              <h1 class="font-bold text-xl text-center">Medicine details</h1>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/32 px-3 mb-6 md:mb-0">
+                  <h1 class="font-bold text-xl text-left">Remdesivir</h1>
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="remedesvir">
+                  Quantity (in texts)
+                  </label>
+                  <input id="remedesvir" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"  type="text" placeholder="Qty in texts">
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-2 mb-2">
+                <div class="w-full md:w-1/32 px-3 mb-6 md:mb-0">
+                  <h1 class="font-bold text-xl text-left">Heparin</h1>
+                  <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="heparin">
+                  Quantity (in texts)
+                  </label>
+                  <input id="heparin" class="appearance-none block w-full border-2 border-purple-300 text-gray-700 rounded py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Qty in texts">
+                </div>
+              </div>
+
+              <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+                <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Clear form</button>
+                    <!--<button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Submitting First Time</button>-->
+                    <button onclick="sendToDb()" class='w-auto bg-pink-700 hover:bg-pink-900 rounded-lg shadow-xl font-medium text-white px-10 py-2'>Update details</button>
+              </div>
+        </div>
+    </div>
+    </div>
+  </div>
+   <!--Final Footer-->
+<%- include('./partial/footer') %> 
+  </body>
+</html>

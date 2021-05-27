@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    <title>FAQs</title>
+
+    <style type="text/css">
+        .swiper {
+          scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+        .swiper > img {
+          scroll-snap-align: start;
+        }
+        /*div {
+        background-image:url("img/Plasma-donation.jpg");} */
+      </style>
+</head>
+<body background="img/background.png" style="background-repeat:no-repeat; background-size: 100% 100%;">
+
+    <div class="md:flex min-h-10">
+        <!-- Nav -->
+        <div
+          class="md:flex flex-wrap justify-between w-screen h-20 text-white bg-black md:flex-nowrap"
+        >
+          
+          <div class="z-30 md:flex items-center h-full pl-3 space-x-3 bg-gradient-to-r from-blue-200 to-blue-300">
+
+            <img alt="logo" class=" w-50 h-20 border-1 border-blue-500" src="img/logo.png" />
+          
+            <!--<p class="text-2xl text-black">CoSahayak</p> -->
+          </div>
+          <!-- MenuButton -->
+         <!-- <button
+            class="z-30 md:flex items-center justify-end flex-grow pr-3 bg-black focus:outline-none md:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-8 h-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button> -->
+    
+          <!-- Menu -->
+          <div
+            class="flex flex-col items-stretch w-full text-xl text-center transform bg-gradient-to-r from-blue-300 to-blue-500 md:flex-row md:translate-y-0 md:space-x-5 md:items-center md:justify-end md:pr-3"
+          >
+            <a
+            href="http://localhost:3000/"
+              class="h-10 leading-10 border-b-2 border-dotted md:border-none hover:underline"
+              >Home</a>                   
+
+          </div>
+        </div>
+      </div>
+
+      <!--FAQ-->
+      <div>
+        <section class="text-gray-700">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="text-center mb-20">
+              <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">
+                Frequently Asked Question
+              </h1>
+              <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+                The most common questions about how our app works and what we
+                can do for you.
+              </p>
+            </div>
+            <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+              <div class="w-full lg:w-1/2 px-4 py-2">
+                <details class="mb-4">
+                  <summary class="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                    Who should register?
+                  </summary>
+  
+                  <span class="px-4 py-2 text-black">
+                    Only organisations who are willing to contribute information have to get themselves registered. A normal user can use the app without any registration and login credentials.
+                  </span>
+                </details>
+                <details class="mb-4">
+                  <summary class="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                    Can the organisations and the sources listed be trusted?
+                  </summary>
+  
+                  <span class="px-4 py-2 text-black">
+                    Yes absolutely. The organisations can update information only after they are verified.
+                  </span>
+                </details>
+                <details class="mb-4">
+                  <summary class="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                    How should I contact the organisations if I need them?
+                  </summary>
+  
+                  <span class="px-4 py-2 text-black">
+                    Contact details of the organisations have been listed under each resources, so users can directly contact them.
+                  </span>
+                </details>
+              </div>
+              <div class="w-full lg:w-1/2 px-4 py-2">
+                <details class="mb-4">
+                  <summary class="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                    Do I need to login for using the services?
+                  </summary>
+  
+                  <span class="px-4 py-2 text-black">No, normal users wont have to login or register themself. This facility is only for registered organisations who are updating the data.
+                  </span>
+                </details>
+                <details class="mb-4">
+                  <summary class="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                    Are expired products also listed?
+                  </summary>
+  
+                  <span class="px-4 py-2 text-black">
+                    No, organisations have been clearly instructed and informed not to list expired products. Products/resources that are listed are available to use on the given day.
+                  </span>
+                </details>
+                <details class="mb-4">
+                  <summary class="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                    As an individual, am I allowed to donate if I wish to?
+                  </summary>
+  
+                  <span class="px-4 py-2 text-black">
+                    Yes, absolutely. Donation acceptance status have been listed in the table under each resource. This can be used to check whether a particular organisation accepts donations or not.
+
+                  </span>
+                </details>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+     <!--Final Footer-->
+     <%- include('./partial/footer') %> 
+</body>

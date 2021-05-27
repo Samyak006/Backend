@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    <title>Register</title>
+    <script>
+      function fillDetails() {
+          let name = document.getElementById("name").value;
+          //let type = document.getElementById("type").value;
+          let address = document.getElementById("address").value;
+          let city = document.getElementById("city").value;
+          let district = document.getElementById("district").value;
+          let state = document.getElementById("state").value;
+          let pincode = document.getElementById("pincode").value;
+          let email = document.getElementById("email").value;
+          let telephone = document.getElementById("telephone").value;
+          let altTel = document.getElementById("altTel").value;
+          let TypeOfOrganisation = document.getElementById("TypeOfOrganisation").value;
+
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                  let response = JSON.parse(this.responseText);
+                  window.alert(response.status)
+              }
+          }
+          url = "http://localhost:3000/register"
+          xhttp.open('POST',url, true)
+          xhttp.setRequestHeader('Content-Type','application/json;charset=UTF-8')
+          xhttp.send(JSON.stringify({
+            'name':name,
+            //'type':type,
+            'address':address,
+            'city':city,
+            'district':district,
+            'state':state,
+            'pincode':pincode,
+            'email':email,
+            'telephone':telephone,
+            'altTel':altTel,
+            'TypeOfOrganisation':TypeOfOrganisation
+          }));
+       }
+  </script>
+</head>
+<body background="img/background.png" style="background-repeat:no-repeat; background-size: 100% 100%;">
+    <div class="md:flex min-h-10 ">
+        <!-- Nav -->
+        <div
+          class="md:flex flex-wrap justify-between w-full h-20 text-white bg-black md:flex-nowrap"
+        >
+          
+          <div class="z-30 md:flex items-center h-full pl-3 space-x-3 bg-gradient-to-r from-blue-200 to-blue-300">
+
+            <img alt="logo" class=" w-50 h-20 border-1 border-green-500" src="img/logo.png" />
+          
+            <!--<p class="text-2xl text-black">CoSahayak</p> -->
+          </div>
+         
+    
+          <!-- Menu -->
+          <div
+            class="md:flex flex-col items-stretch w-full text-xl text-center transform bg-gradient-to-r from-blue-300 to-blue-500 md:flex-row md:translate-y-0 md:space-x-5 md:items-center md:justify-end md:pr-3"
+          >
+          
+            <a
+            href="http://localhost:3000/"
+              class="h-10 leading-10 border-b-2 border-dotted md:border-none hover:underline hover:border-pink-500"
+              > Home </a
+            >
+          
+
+          </div>
+        </div>
+      </div> 
+
+    <div class="container">
+
+
+        <!-- Alert Component-->
+        
+        <div class="bg-red-200 border border-red-600 text-red-900 px-4 py-3 rounded my-12" role="alert">
+            <strong class="inline-flex bg-pink-600 text-white rounded-full h-6 px-3 justify-center items-center text- font-bold">Warning !</strong>
+            <span class="block sm:inline">Please make sure you are an authentic source providing genuine information.</span>
+        </div>
+    </div>
+
+    <!--Form-->
+
+    <div class="md:flex h-full w-full bg-transparent to-yellow-600 items-center justify-center  mt-6 mb-32">
+        <div class="grid bg-white rounded-lg shadow-xl w-full md:w-9/12 lg:w-1/2">
+          
+      
+          <div class="flex justify-center mt-4">
+            <div class="flex">
+              <h1 class="text-gray-600 font-bold md:text-2xl text-xl">Registration Form</h1>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Name of Organisation</label>
+            <input id="name"class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Name of Organisation" />
+          </div>
+
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Type of Organisation</label>
+            <select id="TypeOfOrganisation" name="TypeOfOrganisation" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                <option> </option>
+                <option value="hospital">Hospital</option>
+              <option value="Blood bank" >Blood Bank</option>
+              <option value="NGO">NGO</option>
+              <option value="Others" >Others</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Address</label>
+            <input id="address" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Address" />
+          </div>
+        
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+            <div class="grid grid-cols-1">
+              <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">City</label>
+              <input id="city" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="City" />
+            </div>
+
+            <div class="grid grid-cols-1">
+              <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">District</label>
+              <input id="district" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="District" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">State</label>
+            <input id="state" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="State" />
+          </div>            
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+            <div class="grid grid-cols-1">
+              <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Pincode</label>
+              <input id="pincode" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="tel" placeholder="Pincode" />
+            </div>
+            
+            <div class="grid grid-cols-1">
+              <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Email ID</label>
+              <input id="email" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="enail" placeholder="Email ID" />
+            </div>
+          </div> 
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+            <div class="grid grid-cols-1">
+              <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Telephone Number</label>
+              <input id="telephone" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="tel" placeholder="Telephone Number" />
+            </div>
+            
+            <div class="grid grid-cols-1">
+              <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Alternate Contact Number</label>
+              <input id="altTel" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="tel" placeholder="Alternate Contact Number" />
+            </div>
+          </div>         
+    
+      
+          <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
+            <button onclick="window.location.href='http://localhost:3000/register'" class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Clear</button>
+            <button onclick="fillDetails()" class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'> Submit</button>
+          </div>
+       
+        </div>
+      </div>
+
+    <!--Final Footer-->
+    <%- include('./partial/footer') %> 
+</body>

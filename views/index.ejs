@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    <title>CoSahayak-19</title>
+
+    <style type="text/css">
+      .swiper {
+        scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+      .swiper > img {
+        scroll-snap-align: start;
+      }
+      
+    </style>
+</head>
+<body background="img/background.png" style="background-repeat:no-repeat; background-size: 100% 100%;">
+
+  <div class="md:flex min-h-10">
+      <!-- Nav bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-600-->
+      <div
+        class="md:flex flex-wrap justify-between w-screen h-20 text-white bg-black md:flex-nowrap"
+      >
+        
+        <div class="z-30 md:flex items-center h-full pl-3 space-x-3 bg-gradient-to-r from-blue-200 to-blue-300">
+
+          <img alt="logo" class=" w-50 h-20 border-1 border-green-500" src="img/logo.png" />
+        
+          <!--<p class="text-2xl text-black">CoSahayak</p> -->
+        </div>
+        <!-- MenuButton -->
+       <!-- <button
+          class="z-30 md:flex items-center justify-end flex-grow pr-3 bg-black focus:outline-none md:hidden"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-8 h-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button> -->
+  
+        <!-- Menu -->
+        <div
+          class="flex flex-col items-stretch w-full text-xl text-center transform bg-gradient-to-r from-blue-300 to-blue-500 md:flex-row md:translate-y-0 md:space-x-5 md:items-center md:justify-end md:pr-3"
+        >
+          <!--<a
+            href="#"
+            class="h-10 leading-10 border-b-2 border-dotted md:border-none hover:underline"
+            >Home</a
+          > -->
+          
+
+                      
+
+          <a
+            href="http://localhost:3000/login"
+            class="h-10 leading-10 border-b-2 text-black border-dotted hover:bg-pink-300 md:border-none md:bg-pink-200 md:rounded-full md:w-24"
+            >Log In </a
+          >
+          
+
+        </div>
+      </div>
+    </div>
+
+    <!--Carousel-->
+    <!-- component -->
+<!-- Display Container (not part of component) START bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-600-->
+<div class="m-0 mx-auto p-16 sm:p-8 lg:p-8 bg-transparent">
+  
+  <!-- Carousel Body -->
+  <div class="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl slide" style="min-height: 19rem;">
+    <div class="relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg" style="min-height: 19rem;">
+      <img class="absolute inset-0 w-full h-full object-center" src="https://cdn.dribbble.com/users/1081864/screenshots/3344868/healthcare_800x600_newcolors.gif" alt="">
+      <div class="absolute inset-0 w-full h-full opacity-75"></div>
+      <div class="absolute inset-0 w-full h-full flex items-center justify-center fill-current text-white">
+        <svg class="w-full h-24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 239 120"></svg>
+      </div>
+    </div>
+    <div class="w-full md:w-3/5 h-full flex items-center bg-gradient-to-r from-blue-200 via-blue-300 to-blue-500 ">
+      <div class="p-12 md:pr-24 md:pl-16 md:py-12">
+        <p class="text-black italic text-xl"><span class="text-black">An Initiative</span> by Enthusiatic Engineering Students <br> Aiming to launch an All-In-One medical resource portal.
+          <br> Happy Helping !!! Phir Muskurayega India !!! </p>
+        
+      </div>
+
+      <svg class="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-gray-100 -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <polygon points="50,0 100,0 50,100 0,100" />
+      </svg>
+    </div>
+  </div>
+
+  
+  
+  <!-- Carousel Tabs -->
+  <div class="md:flex items-center pt-5 justify-between">
+    <button class="px-2 opacity-100 hover:opacity-50 focus:opacity-100"><a href="http://localhost:3000/blood"><img class="w-80 max-w-xs" src="img/s_bloood.jpg" alt="" style="border-radius: 100%;"></a></button>
+    <button class="px-2 opacity-100 hover:opacity-50 focus:opacity-100"><a href="http://localhost:3000/plasma"><img class="w-180 max-w-xs" src="img/s_plasma.jpg" alt="" style="border-radius: 100%;"></a></button>
+    <button class="px-2 opacity-100 hover:opacity-50 focus:opacity-100"><a href="http://localhost:3000/oxygen"><img class="w-180 max-w-xs" src="img/s_oxygen.png" alt="" style="border-radius: 100%;"></a></button>
+    <button class="px-2 opacity-100 hover:opacity-50 focus:opacity-100"><a href="http://localhost:3000/medicine"><img class="w-180 max-w-xs" src="img/s_medicine.png" alt="" style="border-radius: 100%;"></a></button> <!--max-height: 170px;-->
+  </div>
+  
+</div>
+
+
+<%- include('./partial/footer') %> 
+
+  </body>

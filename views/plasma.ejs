@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script>
+    function showhideForm(tabs) {
+        if (tabs == "district") {
+            document.getElementById("div1").style.display = 'block';
+            document.getElementById("div2").style.display = 'none';
+        }
+        if (tabs == "pincode") {
+            document.getElementById("div1").style.display = 'none';
+            document.getElementById("div2").style.display = 'block';
+        }
+    }
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#find tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    $(document).ready(function(){
+      $("#myInputP").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#find tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+        function showData(){
+            var xhttp = new XMLHttpRequest();
+            var url = "http://localhost:3000/show"
+            xhttp.open("GET", url, true);
+            xhttp.send()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.responseText);
+                    fillData(response);
+                }
+            }
+        }
+        function fillData(response){
+            console.log(response)
+            let dataFiller = document.getElementById("log")
+            var dataString = "<br><table class='h-full w-full table-fixed bg-gradient-to-r from-blue-200 to-blue-100 border-collapse border border-black'> <thead> <tr> <th class='border-collapse border border-black w-1/8 ...'>Organisation name</th> <th class='border-collapse border border-black w-1/8 ...'>Organisation Type</th> <th class='border-collapse border border-black w-1/8 ...'>Address</th> <th class='border-collapse border border-black w-1/8 ...'>District</th> <th class='border-collapse border border-black w-1/8 ...'>Pincode</th> <th class='border-collapse border border-black w-1/8 ...'>A+</th> <th class='border-collapse border border-black w-1/8 ...'>A-</th> <th class='border-collapse border border-black w-1/8 ...'>B+</th> <th class='border-collapse border border-black w-1/8 ...'>B-</th> <th class='border-collapse border border-black w-1/8 ...'>AB+</th> <th class='border-collapse border border-black w-1/8 ...'>AB-</th> <th class='border-collapse border border-black w-1/8 ...'>O+</th> <th class='border-collapse border border-black w-1/8 ...'>O-</th> <th class='border-collapse border border-black w-1/8 ...'>Accepting donations</th> </tr> </thead> ";
+            for(a of response){
+            dataString += 
+            "<tbody id='find'> <tr> <td class='border-collapse border border-black'>"+a.username+"</td> <td class='border-collapse border border-black'>"+a.organization+"</td> <td class='border-collapse border border-black'>"+a.address+"</td> <td class='border-collapse border border-black'>"+a.district+"</td> <td class='border-collapse border border-black'>"+a.pincode+"</td> <td class='border-collapse border border-black'>"+a.plasmaAp+"</td> <td class='border-collapse border border-black'>"+a.plasmaAm+"</td> <td class='border-collapse border border-black'>"+a.plasmaBp+"</td> <td class='border-collapse border border-black'>"+a.plasmaBm+"</td> <td class='border-collapse border border-black'>"+a.plasmaABp+"</td> <td class='border-collapse border border-black'>"+a.plasmaABm+"</td> <td class='border-collapse border border-black'>"+a.plasmaOp+"</td> <td class='border-collapse border border-black'>"+a.plasmaOm+"</td> <td class='border-collapse border border-black'>"+a.AcceptanceStatus_plasma+"</td> </tr> ";
+            }
+            dataString += "</tbody></table>";
+            dataFiller.innerHTML = "";
+            dataFiller.innerHTML = dataString;
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body  background="img/background.png" onload="showData()"style="background-repeat:no-repeat; background-size: 100% 100%;">
+  <div class="md:flex min-h-10">
+    <!-- Nav -->
+    <div
+      class="md:flex flex-wrap justify-between w-full h-20 text-white bg-black md:flex-nowrap"
+    >
+
+      <div class="z-30 md:flex items-center h-full pl-3 space-x-3 bg-gradient-to-r from-blue-200 to-blue-300">
+
+        <img alt="logo" class=" w-50 h-20 border-1 border-green-500" src="img/logo.png" />
+
+        <!--<p class="text-2xl text-black">CoSahayak</p> -->
+      </div>
+
+
+      <!-- Menu -->
+      <div
+        class="flex flex-col items-stretch w-full text-xl text-center transform bg-gradient-to-r from-blue-300 to-blue-500 md:flex-row md:translate-y-0 md:space-x-5 md:items-center md:justify-end md:pr-3"
+      >
+        <a
+        href="http://localhost:3000/"
+          class="h-10 leading-10 border-b-2 border-dotted md:border-none hover:underline"
+          >Home</a
+        >
+
+
+      </div>
+    </div>
+  </div>
+
+
+<!--Table display-->
+<main class="max-w-screen-xl mx-auto p-12 flex flex-col items-center">
+<div class="flex w-full relative">
+<input type="radio" id="option0" name="tabs" value="district" onchange="showhideForm(this.value);" class="appearance-none"/>
+<label for="option0" class="cursor-pointer w-1/2 flex items-center justify-center truncate uppercase select-block font-semibold text-lg rounded-full py-2">Search by District</label>
+<tbody id="find">
+<input type="radio" id="option1" name="tabs" value="pincode" onchange="showhideForm(this.value);" class="appearance-none" />
+<label for="option1" class="cursor-pointer w-1/2 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full py-2">Search by Pincode</label>
+<div class="w-1/2 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full p-0 h-full bg-white absolute transform transition-transform tabAnim"></div>
+</div>
+</main>
+<center>
+<div id="div1" class="container">
+<br>
+<div class="h-full w-1/4 grid grid-cols-1 md:grid-cols-1 gap-5 md:gap-8 mt-5 mx-7">
+    <div class="grid grid-cols">
+      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Search by District</label>
+      <input id="myInput" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Enter district" />
+    </div>
+</div>
+</div>
+
+<div id="div2" style="display:none" class="container">
+<br>
+<div class="h-full w-1/4 grid grid-cols-1 md:grid-cols-1 gap-5 md:gap-8 mt-5 mx-7">
+    <div class="grid grid-cols">
+      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Search by Pincode</label>
+      <input id="myInputP" class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Enter pincode"/>
+    </div>
+</div>
+</div>
+</center>
+
+
+<div class="text-pink-700 px-4 py-3 rounded relative my-5" role="alert"></div>
+<div id="log"></div>
+<!--Final Footer-->
+<%- include('./partial/footer') %> 
+  </body>
+</html>

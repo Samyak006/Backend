@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    <title>About Us</title>
+
+    <style type="text/css">
+        .swiper {
+          scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+        .swiper > img {
+          scroll-snap-align: start;
+        }
+        /*div {
+        background-image:url("img/Plasma-donation.jpg");} */
+      </style>
+</head>
+<body background="img/background.png" style="background-repeat:no-repeat; background-size: 100% 100%;">
+
+    <div class="md:flex min-h-10">
+        <!-- Nav -->
+        <div
+          class="md:flex flex-wrap justify-between w-full h-20 text-white bg-black md:flex-nowrap"
+        >
+          
+          <div class="z-30 md:flex items-center h-full pl-3 space-x-3 bg-gradient-to-r from-blue-200 to-blue-300">
+
+            <img alt="logo" class=" w-50 h-20 border-1 border-green-500" src="img/logo.png" />
+          
+            <!--<p class="text-2xl text-black">CoSahayak</p> -->
+          </div>
+          <!-- MenuButton -->
+         <!-- <button
+            class="z-30 md:flex items-center justify-end flex-grow pr-3 bg-black focus:outline-none md:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-8 h-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button> -->
+    
+          <!-- Menu -->
+          <div
+            class="flex flex-col items-stretch w-full text-xl text-center transform bg-gradient-to-r from-blue-300 to-blue-500 md:flex-row md:translate-y-0 md:space-x-5 md:items-center md:justify-end md:pr-3"
+          >
+            <a
+              href="http://localhost:3000/"
+              class="h-10 leading-10 border-b-2 border-dotted md:border-none hover:underline"
+              >Home</a>                   
+
+          </div>
+        </div>
+      </div>
+
+      <div class="text-black justify-center">
+        <h1 class="text-center text-3xl font-bold"><u>About Us <br> </u>&nbsp;</h1>
+  </div>
+
+      <div class="text-black justify-center">
+            <h1 class="text-center text-2xl font-bold">Creators</h1>
+      </div>
+
+      <!--Profile cards-->
+
+      <div class="md:flex items-center pt-5 justify-between">
+      <div class="h-120 p-2 bg-transparent flex justify-center items-center">
+        <!-- Start of component -->
+        <div class="max-w-sm bg-gradient-to-r from-pink-300 via-pink-200 to-pink-100 border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg">
+           <div id="header" class="flex items-center mb-4"> 
+              <img alt="avatar" class="w-20 rounded-full border-5 border-gray-900" src="img/Me.jpg" />
+              <div id="header-text" class="leading-5 ml-6 sm">
+                 <h4 id="name" class="text-xl font-semibold">Abhishek Basu</h4>
+                 <h5 id="job" class="font-semibold text-blue-600">EXTC Engineering Student (BE)</h5>
+              </div>
+           </div>
+           <div id="quote">
+              <q class="italic text-gray-900">College: Fr. C. Rodrigues Institute Of Technology, Vashi</q> <br>
+                  <q class="italic text-gray-900">Batch: 2018-22</q><br>
+           </div>
+        </div>
+        <!-- End of component -->
+     </div>
+
+     <div class="h-120 p-2 bg-transparent flex justify-center items-center">
+        <!-- Start of component -->
+        <div class="max-w-sm bg-gradient-to-r from-pink-300 via-pink-200 to-pink-100 border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg">
+           <div id="header" class="flex items-center mb-4"> 
+              <img alt="avatar" class="w-20 rounded-full border-2 border-gray-300" src="img/Sridhar _Bonda.jpg" />
+              <div id="header-text" class="leading-5 ml-6 sm">
+                 <h4 id="name" class="text-xl font-semibold">Sridhar Bonda</h4>
+                 <h5 id="job" class="font-semibold text-blue-600">EXTC Engineering Student (BE)</h5>
+              </div>
+           </div>
+           <div id="quote">
+            <q class="italic text-gray-900">College: Fr. C. Rodrigues Institute Of Technology, Vashi</q> <br>
+            <q class="italic text-gray-900">Batch: 2018-22</q><br>
+           </div>
+        </div>
+        <!-- End of component -->
+     </div>
+
+     <div class="h-120 p-2 bg-transparent flex justify-center items-center">
+        <!-- Start of component -->
+        <div class="max-w-sm bg-gradient-to-r from-pink-300 via-pink-200 to-pink-100 border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg">
+           <div id="header" class="flex items-center mb-4"> 
+              <img alt="avatar" class="w-20 rounded-full border-2 border-gray-300" src="img/Samyak.jpg" />
+              <div id="header-text" class="leading-5 ml-6 sm">
+                 <h4 id="name" class="text-xl font-semibold">Samyak Rokade</h4>
+                 <h5 id="job" class="font-semibold text-blue-600">EXTC Engineering Student (BE)</h5>
+              </div>
+           </div>
+           <div id="quote">
+            <q class="italic text-gray-900">College: Fr. C. Rodrigues Institute Of Technology, Vashi</q> <br>
+            <q class="italic text-gray-900">Batch: 2018-22</q><br>
+           </div>
+        </div>
+        <!-- End of component -->
+     </div>
+
+     <div class="h-120 p-2 bg-transparent flex justify-center items-center">
+        <!-- Start of component -->
+        <div class="max-w-sm bg-gradient-to-r from-pink-300 via-pink-200 to-pink-100 border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg">
+           <div id="header" class="flex items-center mb-4"> 
+              <img alt="avatar" class="w-20 rounded-full border-2 border-gray-300" src="img/Serena.jpg" />
+              <div id="header-text" class="leading-5 ml-6 sm">
+                 <h4 id="name" class="text-xl font-semibold">Serena Raju</h4>
+                 <h5 id="job" class="font-semibold text-blue-600">CS Engineering Student (BE)</h5>
+              </div>
+           </div>
+           <div id="quote">
+            <q class="italic text-gray-900">College: Fr. C. Rodrigues Institute Of Technology, Vashi</q> <br>
+            <q class="italic text-gray-900">Batch: 2018-22</q><br>
+           </div>
+        </div>
+        <!-- End of component -->
+     </div>
+    </div>
+
+    <div class="text-black justify-center">
+        <h1 class="text-center text-2xl font-bold">About The Web-App <br> &nbsp;</h1>
+  </div>
+  <div class="text-black justify-center">
+    <q class="italic w-full text-black text-justify text-10xs">With the crippling dearth of access to crucial resources during these 
+        demanding times, we as engineers are obliged to churn out innovative ideas to help streamline the process of 
+        gathering all the necessary resources required by suffering patients and families. We propose a website, 
+        namely "CoSahayak-19" which hosts a database containing detailed information regarding the inventory of all the 
+        required resources. The resources that are monitored include blood, plasma, oxygen and medicines like Remdesivir 
+        and Heparin. Organizations and suppliers of the four resources can register themselves within the website and update 
+        their inventory conveniently. The registered organizations are then manually verified to account to their credibility. 
+        This portal would potentially be fully available to everyone for viewing. The general public can easily access this 
+        database with a sleek user friendly interface without having to go through the trouble of making an account. 
+        They can choose the commodity and filter the results according to the location to check the availability of the commodity. 
+        The simplicity of this service is attributed to making it as user friendly as possible.
+        </q>
+</div>
+
+<div class="text-black justify-center">
+    <h1 class="text-center text-2xl font-bold">Future Scopes <br> &nbsp;</h1>
+</div>
+<div class="text-black justify-center">
+  <p class="italic w-full text-black text-justify text-10xs">
+    1. Database to be directly updated from organisation's website. This will eliminate the process of manual updation. <br>
+    2. More resources like ambulance availability, vaccination centres/status, more medicines and drugs can be listed on this web-app.
+    <br> 3. Currently, we have focussed more on covid-19 resources, but this web-app is dynamic enough to list any other medical resources.
+    <br> 4. The Edit Page for organisations is yet to be made functional. (in case the organisation wants to change their registered details) <br> &nbsp;
+  </p>
+</div>
+
+<div class="text-black justify-center">
+  <h1 class="text-center text-2xl font-bold">How to Use<br> &nbsp;</h1>
+</div>
+<div class="text-black justify-center">
+  <p class="italic text-black text-justify text-10xs">
+    This is remaining
+  </p>
+</div>
+    <!--Footer
+    <div class="bg-gray-900">
+        <footer class="md:flex flex-wrap items-center justify-between p-3 m-auto">
+            <div class="container mx-auto flex flex-col flex-wrap items-center justify-between">
+                <ul class="flex mx-auto text-white text-center">
+                  <li class="p-2 cursor-pointer hover:underline">FAQs</li>
+                  <li class="p-2 cursor-pointer hover:underline">Home</li>
+                  </ul>
+                  <div class="flex mx-auto text-white text-center">
+                    Address: 
+          <br>
+          Telephone:
+          <br>
+          Email ID:
+          <br>
+          &nbsp;
+                  </div>
+                <div class="flex mx-auto text-white text-center">
+                  Credit info
+                </div>
+                <div class="flex mx-auto text-white text-center">
+                  © Copyright 2020. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+    </div> -->
+
+  <!--Final Footer-->
+<%- include('./partial/footer')  %> 
+     
+
+</body>
